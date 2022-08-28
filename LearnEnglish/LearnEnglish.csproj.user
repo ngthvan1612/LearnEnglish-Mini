@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\Nguyen Thanh Van\source\repos\LearnEnglish\LearnEnglish\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="App\GUI\ChuDe\frmSuaChuDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\ChuDe\frmQuanLyChuDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\ChuDe\frmThemChuDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\Hoc\frmChonTopic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\Hoc\frmHoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\Support\frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\Support\frmXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\TuVung\frmQuanLyTuVung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\TuVung\frmSuaTuVung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="App\GUI\TuVung\frmThemTuVung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
