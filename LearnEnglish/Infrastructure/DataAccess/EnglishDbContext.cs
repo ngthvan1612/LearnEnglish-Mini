@@ -26,7 +26,7 @@ namespace LearnEnglish.Infrastructure.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=HocTiengAnh_02;Integrated Security=True;");
+            optionsBuilder.UseSqlServer("Server=.;Database=HocTiengAnh_04;Integrated Security=True;");
             base.OnConfiguring(optionsBuilder);
         }
 

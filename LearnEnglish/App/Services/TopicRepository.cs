@@ -1,4 +1,4 @@
-﻿using LearnEnglish.App.DTO.Topics;
+﻿using LearnEnglish.App.Views.Topics;
 using LearnEnglish.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace LearnEnglish.App.Services
         {
             var newTopic = new Topic();
             newTopic.Name = name;
-            newTopic.Created = DateTime.Now;
+            newTopic.CreatedAt = DateTime.Now;
 
             this.Context.Topics.Add(newTopic);
 
@@ -33,18 +33,25 @@ namespace LearnEnglish.App.Services
 
         public Topic? GetTopic(int id)
         {
-            return this.Context.Topics.FirstOrDefault(u => u.Id == id);
+            return this.Context.Topics.Where(u => u.DeletedAt == null).FirstOrDefault(u => u.Id == id);
         }
 
         public Topic? GetTopic(string name)
         {
-            return this.Context.Topics.FirstOrDefault(u => u.Name == name);
+            return this.Context.Topics.Where(u => u.DeletedAt == null).FirstOrDefault(u => u.Name == name);
+        }
+
+        public void DeleteTopic(int id)
+        {
+            var topic = this.Context.Topics.FirstOrDefault(u => u.Id == id);
+            topic.DeletedAt = DateTime.Now;
+            this.Context.SaveChanges();
         }
 
         public BindingList<TopicRowView> GetTopicDataGridView()
         {
             return new BindingList<TopicRowView>(this.Context
-                .Topics.ToList()
+                .Topics.Where(u => u.DeletedAt == null).ToList()
                 .Select((u, id) => new TopicRowView(u) { Order = id + 1 })
                 .ToList()
             );
@@ -52,13 +59,13 @@ namespace LearnEnglish.App.Services
 
         public TopicRowView GetTopicRowView(int id)
         {
-            var refTopic = this.Context.Topics.FirstOrDefault(u => u.Id == id);
+            var refTopic = this.Context.Topics.Where(u => u.DeletedAt == null).FirstOrDefault(u => u.Id == id);
             return new TopicRowView(refTopic);
         }
 
         public IEnumerable<Topic> GetTopics()
         {
-            return this.Context.Topics.ToList();
+            return this.Context.Topics.Where(u => u.DeletedAt == null).ToList();
         }
 
         public Topic Update(int id, string name)

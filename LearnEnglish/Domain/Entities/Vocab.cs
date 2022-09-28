@@ -13,7 +13,8 @@ namespace LearnEnglish.Domain.Entities
         public int TopicId { get; set; }
         public Topic? Topic { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public Vocab()
         {

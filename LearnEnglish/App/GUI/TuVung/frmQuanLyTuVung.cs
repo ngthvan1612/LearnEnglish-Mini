@@ -1,6 +1,6 @@
-﻿using LearnEnglish.App.DTO.Vocabs;
-using LearnEnglish.App.Extensions;
+﻿using LearnEnglish.App.Extensions;
 using LearnEnglish.App.Services;
+using LearnEnglish.App.Views.Vocabs;
 using LearnEnglish.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -124,6 +124,23 @@ namespace LearnEnglish.App.GUI.TuVung
                 VocabRowView row = dgvVocabs.SelectedRows[0].DataBoundItem as VocabRowView;
                 this.vocabService.UpdateAudio(row.RefVocab.Id, null);
                 this.reloadListVocab();
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (this.dgvVocabs.SelectedRows.Count == 1)
+            {
+                var topic = this.dgvVocabs.SelectedRows[0].DataBoundItem as VocabRowView;
+
+                var answer = MessageBox.Show("Bạn có chắc chắn muốn xóa không?",
+                    "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (answer == DialogResult.Yes)
+                {
+                    this.vocabService.DeleteVocab(topic.RefVocab.Id);
+                    this.reloadListVocab();
+                }
             }
         }
     }

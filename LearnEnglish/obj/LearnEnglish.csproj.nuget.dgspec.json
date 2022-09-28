@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nguyen Thanh Van\\source\\repos\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj": {}
+    "E:\\github\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nguyen Thanh Van\\source\\repos\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj": {
+    "E:\\github\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nguyen Thanh Van\\source\\repos\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj",
+        "projectUniqueName": "E:\\github\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj",
         "projectName": "LearnEnglish",
-        "projectPath": "C:\\Users\\Nguyen Thanh Van\\source\\repos\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj",
+        "projectPath": "E:\\github\\LearnEnglish-Mini\\LearnEnglish\\LearnEnglish.csproj",
         "packagesPath": "C:\\Users\\Nguyen Thanh Van\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nguyen Thanh Van\\source\\repos\\LearnEnglish-Mini\\LearnEnglish\\obj\\",
+        "outputPath": "E:\\github\\LearnEnglish-Mini\\LearnEnglish\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -61,6 +61,12 @@
               "version": "[6.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.8, )"
             },

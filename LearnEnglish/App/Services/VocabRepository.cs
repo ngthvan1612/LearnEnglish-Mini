@@ -1,4 +1,4 @@
-﻿using LearnEnglish.App.DTO.Vocabs;
+﻿using LearnEnglish.App.Views.Vocabs;
 using LearnEnglish.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace LearnEnglish.App.Services
         {
             eng = eng.Trim().ToLower();
             vie = vie.Trim().ToLower();
-            var vocab = this.Context.Vocabs.FirstOrDefault(u => u.Eng.ToLower().Trim() == eng && u.Vie.ToLower().Trim() == vie);
+            var vocab = this.Context.Vocabs.Where(u => u.DeletedAt == null).FirstOrDefault(u => u.Eng.ToLower().Trim() == eng && u.Vie.ToLower().Trim() == vie);
             return vocab;
         }
 
@@ -42,20 +42,27 @@ namespace LearnEnglish.App.Services
         {
             eng = eng.Trim().ToLower();
             vie = vie.Trim().ToLower();
-            var vocab = this.Context.Vocabs.Where(u => u.TopicId == topicId).FirstOrDefault(u => u.Eng.ToLower().Trim() == eng && u.Vie.ToLower().Trim() == vie);
+            var vocab = this.Context.Vocabs.Where(u => u.DeletedAt == null).Where(u => u.TopicId == topicId).FirstOrDefault(u => u.Eng.ToLower().Trim() == eng && u.Vie.ToLower().Trim() == vie);
             return vocab;
+        }
+
+        public void DeleteVocab(int id)
+        {
+            var vocab = this.Context.Vocabs.FirstOrDefault(u => u.Id == id);
+            vocab.DeletedAt = DateTime.Now;
+            this.Context.SaveChanges();
         }
 
         public VocabRowView GetWithAudio(int vocabId)
         {
-            var refVocab = this.Context.Vocabs.FirstOrDefault(u => u.Id == vocabId);
+            var refVocab = this.Context.Vocabs.Where(u => u.DeletedAt == null).FirstOrDefault(u => u.Id == vocabId);
             return new VocabRowView(refVocab);
         }
 
         public VocabRowView GetWithoutAudio(int vocabId)
         {
             var query = from vocab in this.Context.Vocabs
-                        where vocab.Id == vocabId
+                        where vocab.Id == vocabId && vocab.DeletedAt == null
                         select new
                         {
                             HasAudio = vocab.Audio != null,
@@ -65,7 +72,7 @@ namespace LearnEnglish.App.Services
                                 Eng = vocab.Eng,
                                 Vie = vocab.Vie,
                                 Audio = null,
-                                Created = vocab.Created,
+                                CreatedAt = vocab.CreatedAt,
                                 TopicId = vocab.TopicId
                             }
                         };
@@ -82,14 +89,14 @@ namespace LearnEnglish.App.Services
 
         public IEnumerable<VocabRowView> ListVocabOfTopicWithAudio(int topicId)
         {
-            var listVocabs = this.Context.Vocabs.Where(u => u.TopicId == topicId).ToList();
+            var listVocabs = this.Context.Vocabs.Where(u => u.DeletedAt == null).Where(u => u.TopicId == topicId).ToList();
             return listVocabs.Select((u, id) => new VocabRowView(u) { HasAudio = u.Audio != null, Order = id + 1 });
         }
 
         public IEnumerable<VocabRowView> ListVocabOfTopicWithoutAudio(int topicId)
         {
             var query = from vocab in this.Context.Vocabs
-                        where vocab.TopicId == topicId
+                        where vocab.TopicId == topicId && vocab.DeletedAt == null
                         select new
                         {
                             HasAudio = vocab.Audio != null,
@@ -99,7 +106,7 @@ namespace LearnEnglish.App.Services
                                 Eng = vocab.Eng,
                                 Vie = vocab.Vie,
                                 Audio = null,
-                                Created = vocab.Created,
+                                CreatedAt = vocab.CreatedAt,
                                 TopicId = vocab.TopicId
                             }
                         };

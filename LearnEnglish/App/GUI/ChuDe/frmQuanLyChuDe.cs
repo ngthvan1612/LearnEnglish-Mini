@@ -1,5 +1,4 @@
-﻿using LearnEnglish.App.DTO.Topics;
-using LearnEnglish.App.Extensions;
+﻿using LearnEnglish.App.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LearnEnglish.App.Services;
+using LearnEnglish.App.Views.Topics;
 
 namespace LearnEnglish.App.GUI.ChuDe
 {
@@ -64,7 +64,24 @@ namespace LearnEnglish.App.GUI.ChuDe
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chưa có tính năng này!");
+            if (this.dgvChuDe.SelectedRows.Count == 1)
+            {
+                var topic = this.dgvChuDe.SelectedRows[0].DataBoundItem as TopicRowView;
+
+                var answer = MessageBox.Show("Bạn có chắc chắn muốn xóa không?",
+                    "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (answer == DialogResult.Yes)
+                {
+                    this.topicService.DeleteTopic(topic.RefTopic.Id);
+                    this.reloadListTopic();
+                }
+            }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

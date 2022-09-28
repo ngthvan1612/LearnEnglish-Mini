@@ -1,5 +1,5 @@
-﻿using LearnEnglish.App.DTO.Topics;
-using LearnEnglish.App.Services;
+﻿using LearnEnglish.App.Services;
+using LearnEnglish.App.Views.Topics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

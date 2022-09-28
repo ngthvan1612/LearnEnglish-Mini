@@ -16,7 +16,8 @@ namespace LearnEnglish.Domain.Entities
 
         public HashSet<Vocab> Vocabs { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public Topic()
         {
